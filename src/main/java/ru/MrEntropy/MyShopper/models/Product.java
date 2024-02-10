@@ -1,16 +1,30 @@
 package ru.MrEntropy.MyShopper.models;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 import java.awt.*;
+
 
 public class Product {
 
+
     private int id;
+    @NotEmpty(message = "The product name should not be empty")
+    @Size(min=2, max = 30, message = "The product name must be between 2 and 30 characters long")
     private String name;
+    @NotEmpty(message = "The product category should not be empty")
     private String category;
+    @NotEmpty(message = "The product chapter should not be empty")
     private String chapter;
+    @NotEmpty(message = "Please specify the unit of sale of the product")
     private String unit;
+    @NotEmpty(message = "Please specify the price of the product")
+    @Min(value = 0,message = "The price of the product cannot be negative")
     private double price;
 
+    private String notes;
     public String getNotes() {
         return notes;
     }
@@ -27,7 +41,7 @@ public class Product {
         this.images = images;
     }
 
-    private String notes;
+
 
     Image[] images;
 
